@@ -9,6 +9,8 @@
 <meta name="author" content="Cinomedia">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://cinomedia.in/">
+<!-- CHANGE 3: favicon set to 3.png -->
+<link rel="icon" type="image/png" href="images/3.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://cinomedia.in/">
 <meta property="og:title" content="Cinomedia — Premium Video Editing Studio">
@@ -22,6 +24,8 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","name":"Cinomedia","description":"Premium video editing studio for creators and businesses.","url":"https://cinomedia.in","email":"editor@cinomedia.in","telephone":"+91-9411345394","address":{"@type":"PostalAddress","addressLocality":"Dehradun","addressRegion":"Uttarakhand","addressCountry":"IN"},"priceRange":"₹₹","openingHours":"Mo-Su 09:00-21:00","sameAs":["https://instagram.com/cinomedia.in"]}
 </script>
+<!-- Wistia player script -->
+<script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -56,7 +60,6 @@ body{font-family:var(--sans);background:var(--black);color:var(--white);overflow
 @keyframes scrollLeft{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 @keyframes scrollRight{0%{transform:translateX(-50%);}100%{transform:translateX(0);}}
 
-/* NO SCROLL ANIMATIONS — all .r and .r-scale elements are always visible */
 .r,.r1,.r2,.r3,.r-scale{opacity:1!important;transform:none!important;transition:none!important;}
 
 img{max-width:100%;height:auto;}
@@ -64,7 +67,7 @@ img{max-width:100%;height:auto;}
 .img-fade.loaded{opacity:1;}
 [data-bg]{background-color:var(--black-3);}
 
-/* CURSOR desktop only */
+/* CURSOR */
 #cur,#cur-ring{display:none;}
 @media(pointer:fine){
   #cur{display:block;position:fixed;width:10px;height:10px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9000;transform:translate(-50%,-50%);transition:width .2s,height .2s;mix-blend-mode:difference;}
@@ -142,7 +145,7 @@ section{padding:110px 60px;}
 .s-title{font-family:var(--serif);font-size:clamp(34px,5vw,66px);font-weight:300;line-height:1.05;}
 .s-title em{font-style:italic;color:var(--gold-light);}
 
-/* SERVICES */
+/* SERVICES — CHANGE 2: section numbers match heading gold colour */
 #services{background:var(--black-3);}
 .svc-header{max-width:580px;margin-bottom:60px;}
 .svc-header p{color:var(--muted);font-size:15px;line-height:1.8;margin-top:20px;font-weight:300;}
@@ -151,7 +154,8 @@ section{padding:110px 60px;}
 .svc-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .45s cubic-bezier(0.16,1,0.3,1);transform-origin:left;}
 .svc-card:hover{background:var(--black-2);}
 .svc-card:hover::before{transform:scaleX(1);}
-.svc-n{font-family:var(--serif);font-size:50px;font-weight:300;color:rgba(201,168,76,0.08);line-height:1;margin-bottom:16px;}
+/* CHANGE 2: .svc-n colour matches section heading colour = gold */
+.svc-n{font-family:var(--serif);font-size:50px;font-weight:300;color:var(--gold);line-height:1;margin-bottom:16px;opacity:0.55;}
 .svc-card h3{font-family:var(--serif);font-size:21px;font-weight:300;margin-bottom:10px;}
 .svc-card p{font-size:13px;color:var(--muted);line-height:1.8;font-weight:300;}
 .svc-card ul{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:5px;}
@@ -171,6 +175,8 @@ section{padding:110px 60px;}
 .cat-label span::before,.cat-label span::after{content:'';position:absolute;top:50%;width:80px;height:1px;background:rgba(201,168,76,0.35);}
 .cat-label span::before{right:100%;}
 .cat-label span::after{left:100%;}
+
+/* SHORT FORM */
 .short-strip{padding:0 60px 72px;display:grid;grid-template-columns:repeat(6,1fr);gap:14px;}
 .short-card{border-radius:14px;overflow:hidden;position:relative;aspect-ratio:9/16;background:var(--black-3);border:1px solid rgba(255,255,255,0.09);transition:transform .4s cubic-bezier(0.16,1,0.3,1),border-color .3s,box-shadow .4s;cursor:pointer;}
 .short-card:hover{transform:translateY(-8px);border-color:rgba(201,168,76,0.55);box-shadow:0 20px 50px rgba(0,0,0,0.5);}
@@ -180,7 +186,9 @@ section{padding:110px 60px;}
 .short-card:hover .sc-play{opacity:1;transform:translate(-50%,-50%) scale(1.1);}
 .sc-cat{font-size:9px;color:var(--gold);font-weight:500;letter-spacing:.08em;margin-bottom:3px;}
 .sc-title{font-size:11px;color:var(--white);line-height:1.3;font-weight:300;}
-.long-grid{padding:0 300px 80px;display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+
+/* LONG FORM — CHANGE 1: updated layout */
+.long-grid{padding:0 60px 80px;display:grid;grid-template-columns:1fr 1fr;gap:18px;}
 .long-card{border-radius:12px;overflow:hidden;position:relative;cursor:pointer;aspect-ratio:16/9;background:var(--black-3);border:1px solid rgba(255,255,255,0.09);transition:transform .4s cubic-bezier(0.16,1,0.3,1),border-color .3s,box-shadow .4s;}
 .long-card:hover{transform:translateY(-5px);border-color:rgba(201,168,76,0.55);box-shadow:0 16px 48px rgba(0,0,0,0.5);}
 .lc-bg{width:100%;height:100%;position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;}
@@ -212,7 +220,7 @@ section{padding:110px 60px;}
 .num-suffix{font-family:var(--serif);font-size:36px;color:var(--gold);}
 .num-label{font-size:11px;color:var(--muted);letter-spacing:.1em;margin-top:8px;font-weight:300;text-transform:uppercase;}
 
-/* PROCESS */
+/* PROCESS — CHANGE 2: step numbers match "How It Works" heading = gold */
 #process{background:var(--black);overflow:hidden;}
 .proc-header{max-width:540px;margin-bottom:70px;}
 .proc-steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.07);}
@@ -220,7 +228,8 @@ section{padding:110px 60px;}
 .proc-step-box:hover{background:var(--black-2);border-top-color:var(--gold);}
 .proc-step-num-label{font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;gap:10px;}
 .proc-step-num-label::before{content:'';width:20px;height:1px;background:var(--gold);}
-.proc-big-num{font-family:var(--serif);font-size:64px;font-weight:300;color:rgba(201,168,76,0.1);line-height:1;margin-bottom:16px;}
+/* CHANGE 2: big step numbers = gold (matching "How It Works" heading) */
+.proc-big-num{font-family:var(--serif);font-size:64px;font-weight:300;color:var(--gold);opacity:0.18;line-height:1;margin-bottom:16px;}
 .proc-step-box h4{font-family:var(--serif);font-size:20px;font-weight:300;margin-bottom:10px;color:var(--white);}
 .proc-step-box p{font-size:12px;color:var(--muted);line-height:1.8;font-weight:300;}
 .proc-step-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:16px;}
@@ -324,11 +333,14 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
 .modal-desc{padding:14px 34px 0;font-size:13px;color:var(--muted);line-height:1.9;font-weight:300;}
 .modal-videos{padding:18px 34px 32px;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .modal-videos.p3{grid-template-columns:repeat(3,1fr);}
+.modal-videos.p4{grid-template-columns:repeat(2,1fr);}
 .mv{border-radius:10px;overflow:hidden;background:var(--black-3);border:1px solid rgba(255,255,255,0.08);}
 .mv-frame{position:relative;width:100%;overflow:hidden;background:var(--black-3);}
 .mv-frame.landscape{aspect-ratio:16/9;}
 .mv-frame.portrait{aspect-ratio:9/16;}
 .mv-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:block;}
+/* Wistia embed styles */
+.mv-frame .wistia_embed{position:absolute;top:0;left:0;width:100%;height:100%;}
 .mv.portrait .mv-frame{aspect-ratio:9/16;}
 .mv-label{padding:8px 12px;font-size:11px;color:var(--muted);}
 
@@ -367,6 +379,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
   .footer-grid{grid-template-columns:1fr 1fr;gap:28px;}
   .modal-videos{grid-template-columns:1fr;}
   .modal-videos.p3{grid-template-columns:1fr 1fr;}
+  .modal-videos.p4{grid-template-columns:1fr;}
   .modal-head,.modal-desc,.modal-videos{padding-left:18px;padding-right:18px;}
 }
 @media(max-width:480px){
@@ -481,6 +494,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
   </div>
 </section>
 
+<!-- SERVICES — CHANGE 2: numbers (.svc-n) now gold -->
 <section id="services">
   <div class="svc-header">
     <div class="s-tag">What We Do</div>
@@ -509,30 +523,65 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
   </div>
 </section>
 
+<!-- OUR WORK — CHANGE 1 (long form cards) + CHANGE 4 (short form wistia links) -->
 <section id="work" style="padding:110px 0 80px;">
   <div class="work-inner">
     <div class="s-tag">Selected Work</div>
     <h2>Stories we've <em>shaped</em></h2>
     <p style="font-size:14px;color:var(--muted);line-height:1.8;max-width:520px;font-weight:300;margin-top:14px;">Click any category to see all videos in that style.</p>
   </div>
+
   <div class="cat-label"><span>Short Form Videos</span></div>
   <div class="short-strip">
-    <div class="short-card" onclick="openModal('mg')"><div class="sc-bg" data-bg="images/marketian.png"></div><div class="sc-overlay"><div class="sc-play">&#9654;</div><div class="sc-cat">Motion Graphics</div><div class="sc-title">Taking ahead</div></div></div>
-    <div class="short-card" onclick="openModal('saas')"><div class="sc-bg" data-bg="images/0x100x.png"></div><div class="sc-overlay"><div class="sc-play">&#9654;</div><div class="sc-cat">SaaS Videos</div><div class="sc-title">0x100x style</div></div></div>
-    <div class="short-card" onclick="openModal('typo')"><div class="sc-bg" data-bg="images/motion.jpg"></div><div class="sc-overlay"><div class="sc-play">&#9654;</div><div class="sc-cat">Typography Videos</div><div class="sc-title">Business &amp; Content</div></div></div>
-    <div class="short-card" onclick="openModal('speed')"><div class="sc-bg" data-bg="images/realstate.png"></div><div class="sc-overlay"><div class="sc-play">&#9654;</div><div class="sc-cat">Speed Ramp</div><div class="sc-title">Music &amp; Real estate</div></div></div>
-    <div class="short-card" onclick="openModal('story')"><div class="sc-bg" data-bg="images/docushort.png"></div><div class="sc-overlay"><div class="sc-play">&#9654;</div><div class="sc-cat">Storytelling</div><div class="sc-title">Documentary &amp; Geo</div></div></div>
-    <div class="short-card" onclick="openModal('other')"><div class="sc-bg" data-bg="images/ai.png"></div><div class="sc-overlay"><div class="sc-play">&#9654;</div><div class="sc-cat">Other Styles</div><div class="sc-title">AI &amp; More</div></div></div>
+    <div class="short-card" onclick="openModal('mg')">
+      <div class="sc-bg" data-bg="images/marketian.png"></div>
+      <div class="sc-overlay"><div class="sc-play">&#9654;</div><div class="sc-cat">Motion Graphics</div><div class="sc-title">Taking ahead</div></div>
+    </div>
+    <div class="short-card" onclick="openModal('saas')">
+      <div class="sc-bg" data-bg="images/0x100x.png"></div>
+      <div class="sc-overlay"><div class="sc-play">&#9654;</div><div class="sc-cat">SaaS Videos</div><div class="sc-title">0x100x style</div></div>
+    </div>
+    <div class="short-card" onclick="openModal('typo')">
+      <div class="sc-bg" data-bg="images/motion.jpg"></div>
+      <div class="sc-overlay"><div class="sc-play">&#9654;</div><div class="sc-cat">Typography Videos</div><div class="sc-title">Business &amp; Content</div></div>
+    </div>
+    <div class="short-card" onclick="openModal('speed')">
+      <div class="sc-bg" data-bg="images/realstate.png"></div>
+      <div class="sc-overlay"><div class="sc-play">&#9654;</div><div class="sc-cat">Speed Ramp</div><div class="sc-title">Music &amp; Real estate</div></div>
+    </div>
+    <div class="short-card" onclick="openModal('story')">
+      <div class="sc-bg" data-bg="images/docushort.png"></div>
+      <div class="sc-overlay"><div class="sc-play">&#9654;</div><div class="sc-cat">Storytelling</div><div class="sc-title">Documentary &amp; Geo</div></div>
+    </div>
+    <div class="short-card" onclick="openModal('other')">
+      <div class="sc-bg" data-bg="images/ai.png"></div>
+      <div class="sc-overlay"><div class="sc-play">&#9654;</div><div class="sc-cat">Other Styles</div><div class="sc-title">AI &amp; More</div></div>
+    </div>
   </div>
+
+  <!-- CHANGE 1: Long form cards — Faceless Documentary, Documentary, Taking Ahead w/ Motion Graphics, 2D Animation & AI Videos -->
   <div class="cat-label"><span>Long Form Videos</span></div>
   <div class="long-grid">
-    <div class="long-card" onclick="openModal('face')"><div class="lc-bg" data-bg="images/faceless.png"></div><div class="lc-overlay"><div class="lc-play">&#9654;</div><div class="lc-cat">Faceless Documentary</div><div class="lc-title">Motion graphics &amp; Taking ahead</div></div></div>
-    <div class="long-card" onclick="openModal('face')"><div class="lc-bg" data-bg="images/andythub.png"></div><div class="lc-overlay"><div class="lc-play">&#9654;</div><div class="lc-cat">Face Documentary</div><div class="lc-title">Motion graphics &amp; Taking ahead</div></div></div>
-    <div class="long-card" onclick="openModal('anim')"><div class="lc-bg" data-bg="images/2d.png"></div><div class="lc-overlay"><div class="lc-play">&#9654;</div><div class="lc-cat">2D Animation</div><div class="lc-title">Stick Animation</div></div></div>
-    <div class="long-card" onclick="openModal('ai')"><div class="lc-bg" data-bg="images/ailong.png"></div><div class="lc-overlay"><div class="lc-play">&#9654;</div><div class="lc-cat">AI Generated Videos</div><div class="lc-title">Taking ahead</div></div></div>
+    <div class="long-card" onclick="openModal('faceless')">
+      <div class="lc-bg" data-bg="images/faceless.png"></div>
+      <div class="lc-overlay"><div class="lc-play">&#9654;</div><div class="lc-cat">Faceless Documentary</div><div class="lc-title">Cinematic faceless storytelling</div></div>
+    </div>
+    <div class="long-card" onclick="openModal('docface')">
+      <div class="lc-bg" data-bg="images/andythub.png"></div>
+      <div class="lc-overlay"><div class="lc-play">&#9654;</div><div class="lc-cat">Documentary</div><div class="lc-title">Face-led documentary style</div></div>
+    </div>
+    <div class="long-card" onclick="openModal('takingahead')">
+      <div class="lc-bg" data-bg="images/faceless.png"></div>
+      <div class="lc-overlay"><div class="lc-play">&#9654;</div><div class="lc-cat">Taking Ahead with Motion Graphics</div><div class="lc-title">Animated data-driven storytelling</div></div>
+    </div>
+    <div class="long-card" onclick="openModal('animai')">
+      <div class="lc-bg" data-bg="images/2d.png"></div>
+      <div class="lc-overlay"><div class="lc-play">&#9654;</div><div class="lc-cat">2D Animation &amp; AI Videos</div><div class="lc-title">Stick, character &amp; AI-generated visuals</div></div>
+    </div>
   </div>
 </section>
 
+<!-- WHY US -->
 <section id="whyus">
   <div class="whyus-bg">CRAFT</div>
   <div class="whyus-layout">
@@ -559,6 +608,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
   <div class="num-cell"><div class="num-val"><span class="count" data-target="5">5</span><span class="num-suffix">yr</span></div><div class="num-label">Experience</div></div>
 </div>
 
+<!-- PROCESS — CHANGE 2: big numbers (.proc-big-num) now gold -->
 <section id="process">
   <div class="proc-header">
     <div class="s-tag">How It Works</div>
@@ -733,106 +783,173 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
   </div>
 </footer>
 
-<!-- MODALS -->
-<!-- ══ MOTION GRAPHICS ══ -->
+<!-- =====================================================================
+     MODALS — SHORT FORM (CHANGE 4: all Wistia links correctly assigned)
+     Each Wistia URL converted to embed format:
+     https://canvadevil6577.wistia.com/medias/ID → iframe src using /embed/iframe/ID
+     ===================================================================== -->
+
+<!-- Motion Graphics: 6 videos (portrait) -->
 <div class="modal-bg" id="m-mg">
   <div class="modal">
     <div class="modal-head">
-      <div class="modal-title">Motion Graphics</div>
-      <button class="modal-close" onclick="closeModal('mg')">✕</button>
+      <div><div class="modal-tag">Short Form</div><div class="modal-title">Motion Graphics</div></div>
+      <button class="modal-close" onclick="closeModal('mg')">&#10005;</button>
     </div>
-
+    <p class="modal-desc">Kinetic typography, animated graphics, and data visualisation edits that hook viewers in the first 3 seconds.</p>
     <div class="modal-videos p3">
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/4m9jj44zjp"></iframe></div>
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/4m9jj44zjp"></iframe></div>
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/zu3dwsrk7e"></iframe></div>
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/z8051s90u7"></iframe></div>
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/z8051s90u7"></iframe></div>
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/kp1zvei8fg"></iframe></div>
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/4m9jj44zjp?videoFoam=true" allowfullscreen loading="lazy" title="Motion Graphics 1"></iframe></div><div class="mv-label">Motion Graphics 1</div></div>
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/260cp2hrqy?videoFoam=true" allowfullscreen loading="lazy" title="Motion Graphics 2"></iframe></div><div class="mv-label">Motion Graphics 2</div></div>
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/zu3dwsrk7e?videoFoam=true" allowfullscreen loading="lazy" title="Motion Graphics 3"></iframe></div><div class="mv-label">Motion Graphics 3</div></div>
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/c5kyr8ux1p?videoFoam=true" allowfullscreen loading="lazy" title="Motion Graphics 4"></iframe></div><div class="mv-label">Motion Graphics 4</div></div>
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/z8051s90u7?videoFoam=true" allowfullscreen loading="lazy" title="Motion Graphics 5"></iframe></div><div class="mv-label">Motion Graphics 5</div></div>
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/kp1zvei8fg?videoFoam=true" allowfullscreen loading="lazy" title="Motion Graphics 6"></iframe></div><div class="mv-label">Motion Graphics 6</div></div>
     </div>
   </div>
 </div>
 
-<!-- ══ 0x100x ══ -->
+<!-- 0x100x SaaS: 3 videos (portrait) -->
 <div class="modal-bg" id="m-saas">
   <div class="modal">
     <div class="modal-head">
-      <div class="modal-title">0x100x</div>
-      <button class="modal-close" onclick="closeModal('saas')">✕</button>
+      <div><div class="modal-tag">Short Form</div><div class="modal-title">SaaS Videos</div></div>
+      <button class="modal-close" onclick="closeModal('saas')">&#10005;</button>
     </div>
-
+    <p class="modal-desc">Clean, punchy product and software demo edits in the 0x100x style — built to convert.</p>
     <div class="modal-videos p3">
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/97setsgtk2"></iframe></div>
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/tgplqf53uq"></iframe></div>
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/97setsgtk2"></iframe></div>
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/97setsgtk2?videoFoam=true" allowfullscreen loading="lazy" title="SaaS 1"></iframe></div><div class="mv-label">SaaS Demo 1</div></div>
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/tgplqf53uq?videoFoam=true" allowfullscreen loading="lazy" title="SaaS 2"></iframe></div><div class="mv-label">SaaS Demo 2</div></div>
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/pgj4g2drrw?videoFoam=true" allowfullscreen loading="lazy" title="SaaS 3"></iframe></div><div class="mv-label">SaaS Demo 3</div></div>
     </div>
   </div>
 </div>
 
-<!-- ══ TYPOGRAPHY ══ -->
+<!-- Typography: 3 videos (portrait) -->
 <div class="modal-bg" id="m-typo">
   <div class="modal">
     <div class="modal-head">
-      <div class="modal-title">Typography</div>
-      <button class="modal-close" onclick="closeModal('typo')">✕</button>
+      <div><div class="modal-tag">Short Form</div><div class="modal-title">Typography Videos</div></div>
+      <button class="modal-close" onclick="closeModal('typo')">&#10005;</button>
     </div>
-
+    <p class="modal-desc">Bold kinetic text edits for business, coaching and content — where every word hits.</p>
     <div class="modal-videos p3">
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/f4pno6rmh2"></iframe></div>
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/2u9i0yqfot"></iframe></div>
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/6eur1jqina"></iframe></div>
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/f4pno6rmh2?videoFoam=true" allowfullscreen loading="lazy" title="Typography 1"></iframe></div><div class="mv-label">Typography 1</div></div>
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/2u9i0yqfot?videoFoam=true" allowfullscreen loading="lazy" title="Typography 2"></iframe></div><div class="mv-label">Typography 2</div></div>
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/6eur1jqina?videoFoam=true" allowfullscreen loading="lazy" title="Typography 3"></iframe></div><div class="mv-label">Typography 3</div></div>
     </div>
   </div>
 </div>
 
-<!-- ══ SPEED RAMP ══ -->
+<!-- Speed Ramp: 3 videos (portrait) -->
 <div class="modal-bg" id="m-speed">
   <div class="modal">
     <div class="modal-head">
-      <div class="modal-title">Speed Ramp</div>
-      <button class="modal-close" onclick="closeModal('speed')">✕</button>
+      <div><div class="modal-tag">Short Form</div><div class="modal-title">Speed Ramp</div></div>
+      <button class="modal-close" onclick="closeModal('speed')">&#10005;</button>
     </div>
-
+    <p class="modal-desc">Cinematic speed ramping for music videos, real estate walkthroughs, and lifestyle content.</p>
     <div class="modal-videos p3">
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/bl5qkef1cv"></iframe></div>
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/mvb1avcqmb"></iframe></div>
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/qn7vu4aqq2"></iframe></div>
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/bl5qkef1cv?videoFoam=true" allowfullscreen loading="lazy" title="Speed Ramp 1"></iframe></div><div class="mv-label">Speed Ramp 1</div></div>
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/mvb1avcqmb?videoFoam=true" allowfullscreen loading="lazy" title="Speed Ramp 2"></iframe></div><div class="mv-label">Speed Ramp 2</div></div>
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/qn7vu4aqq2?videoFoam=true" allowfullscreen loading="lazy" title="Speed Ramp 3"></iframe></div><div class="mv-label">Speed Ramp 3</div></div>
     </div>
   </div>
 </div>
 
-<!-- ══ DOCUMENTARY ══ -->
+<!-- Documentary & Geo (Storytelling): 2 videos (portrait) -->
 <div class="modal-bg" id="m-story">
   <div class="modal">
     <div class="modal-head">
-      <div class="modal-title">Documentary & Geo</div>
-      <button class="modal-close" onclick="closeModal('story')">✕</button>
+      <div><div class="modal-tag">Short Form</div><div class="modal-title">Storytelling</div></div>
+      <button class="modal-close" onclick="closeModal('story')">&#10005;</button>
     </div>
-
-    <div class="modal-videos p3">
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/k0jjpg7u4b"></iframe></div>
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/pza4dt740p"></iframe></div>
+    <p class="modal-desc">Narrative-driven short docs, geo-history content, and mini-documentary style edits.</p>
+    <div class="modal-videos">
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/k0jjpg7u4b?videoFoam=true" allowfullscreen loading="lazy" title="Documentary & Geo 1"></iframe></div><div class="mv-label">Documentary &amp; Geo 1</div></div>
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/pza4dt740p?videoFoam=true" allowfullscreen loading="lazy" title="Documentary & Geo 2"></iframe></div><div class="mv-label">Documentary &amp; Geo 2</div></div>
     </div>
   </div>
 </div>
 
-<!-- ══ AI & OTHER ══ -->
+<!-- AI & Other: 2 videos (portrait) -->
 <div class="modal-bg" id="m-other">
   <div class="modal">
     <div class="modal-head">
-      <div class="modal-title">AI & Other</div>
-      <button class="modal-close" onclick="closeModal('other')">✕</button>
+      <div><div class="modal-tag">Short Form</div><div class="modal-title">Other Styles</div></div>
+      <button class="modal-close" onclick="closeModal('other')">&#10005;</button>
     </div>
-
-    <div class="modal-videos p3">
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/yb4o59lw63"></iframe></div>
-      <div class="mv portrait"><iframe src="https://fast.wistia.com/embed/iframe/pbbi4tfxnk"></iframe></div>
+    <p class="modal-desc">AI-assisted edits, experimental styles, and everything that doesn't fit a neat box.</p>
+    <div class="modal-videos">
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/yb4o59lw63?videoFoam=true" allowfullscreen loading="lazy" title="AI & Other 1"></iframe></div><div class="mv-label">AI &amp; Other 1</div></div>
+      <div class="mv portrait"><div class="mv-frame portrait"><iframe src="https://fast.wistia.net/embed/iframe/pbbi4tfxnk?videoFoam=true" allowfullscreen loading="lazy" title="AI & Other 2"></iframe></div><div class="mv-label">AI &amp; Other 2</div></div>
     </div>
   </div>
 </div>
-<div class="modal-bg" id="m-face"><div class="modal"><div class="modal-head"><div><div class="modal-tag">Long Form</div><div class="modal-title">Documentary Videos</div></div><button class="modal-close" onclick="closeModal('face')">&#10005;</button></div><p class="modal-desc">Talking-head edits with motion graphics overlays, data visuals, and b-roll.</p><div class="modal-videos"><div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/YOUR_VIDEO_ID?enablejsapi=1" src="" allowfullscreen loading="lazy" title="Finance Doc"></iframe></div><div class="mv-label">Finance Documentary</div></div><div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/YOUR_VIDEO_ID?enablejsapi=1" src="" allowfullscreen loading="lazy" title="Policy Analysis"></iframe></div><div class="mv-label">Policy Analysis</div></div><div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/YOUR_VIDEO_ID?enablejsapi=1" src="" allowfullscreen loading="lazy" title="Educator Series"></iframe></div><div class="mv-label">Educator Series</div></div><div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/YOUR_VIDEO_ID?enablejsapi=1" src="" allowfullscreen loading="lazy" title="Long Opinion"></iframe></div><div class="mv-label">Long-form Opinion</div></div></div></div></div>
-<div class="modal-bg" id="m-anim"><div class="modal"><div class="modal-head"><div><div class="modal-tag">Long Form</div><div class="modal-title">2D Animation</div></div><button class="modal-close" onclick="closeModal('anim')">&#10005;</button></div><p class="modal-desc">Whiteboard, stick figure, and character animation — simplifying complex ideas with charm.</p><div class="modal-videos"><div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/YOUR_VIDEO_ID?enablejsapi=1" src="" allowfullscreen loading="lazy" title="Stick Animation"></iframe></div><div class="mv-label">Stick Animation</div></div><div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/YOUR_VIDEO_ID?enablejsapi=1" src="" allowfullscreen loading="lazy" title="Whiteboard"></iframe></div><div class="mv-label">Whiteboard Video</div></div><div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/YOUR_VIDEO_ID?enablejsapi=1" src="" allowfullscreen loading="lazy" title="Character Story"></iframe></div><div class="mv-label">Character Story</div></div><div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/YOUR_VIDEO_ID?enablejsapi=1" src="" allowfullscreen loading="lazy" title="Concept Explainer"></iframe></div><div class="mv-label">Concept Explainer</div></div></div></div></div>
-<div class="modal-bg" id="m-ai"><div class="modal"><div class="modal-head"><div><div class="modal-tag">Long Form</div><div class="modal-title">AI Generated Videos</div></div><button class="modal-close" onclick="closeModal('ai')">&#10005;</button></div><p class="modal-desc">AI-generated visuals, cinematic world-building, and fantasy/nature content crafted using the latest AI tools.</p><div class="modal-videos"><div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/YOUR_VIDEO_ID?enablejsapi=1" src="" allowfullscreen loading="lazy" title="Forest Fantasy"></iframe></div><div class="mv-label">Forest Fantasy World</div></div><div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/YOUR_VIDEO_ID?enablejsapi=1" src="" allowfullscreen loading="lazy" title="AI Cinematic"></iframe></div><div class="mv-label">AI Cinematic Sequence</div></div><div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/YOUR_VIDEO_ID?enablejsapi=1" src="" allowfullscreen loading="lazy" title="Nature Doc"></iframe></div><div class="mv-label">Nature Documentary</div></div><div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/YOUR_VIDEO_ID?enablejsapi=1" src="" allowfullscreen loading="lazy" title="Sci-Fi Concept"></iframe></div><div class="mv-label">Sci-Fi Concept</div></div></div></div></div>
+
+<!-- =====================================================================
+     MODALS — LONG FORM (CHANGE 1: new card structure)
+     These 4 modals are placeholders — add real video links when ready
+     ===================================================================== -->
+
+<!-- Faceless Documentary -->
+<div class="modal-bg" id="m-faceless">
+  <div class="modal">
+    <div class="modal-head">
+      <div><div class="modal-tag">Long Form</div><div class="modal-title">Faceless Documentary</div></div>
+      <button class="modal-close" onclick="closeModal('faceless')">&#10005;</button>
+    </div>
+    <p class="modal-desc">Cinematic faceless storytelling — no talking head, pure visual narration with motion graphics and b-roll.</p>
+    <div class="modal-videos modal-videos p4">
+      <div class="mv"><div class="mv-frame landscape"><iframe src="" data-src="YOUR_FACELESS_VIDEO_1" allowfullscreen loading="lazy" title="Faceless Doc 1"></iframe></div><div class="mv-label">Faceless Documentary 1</div></div>
+      <div class="mv"><div class="mv-frame landscape"><iframe src="" data-src="YOUR_FACELESS_VIDEO_2" allowfullscreen loading="lazy" title="Faceless Doc 2"></iframe></div><div class="mv-label">Faceless Documentary 2</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Documentary (Face-led) -->
+<div class="modal-bg" id="m-docface">
+  <div class="modal">
+    <div class="modal-head">
+      <div><div class="modal-tag">Long Form</div><div class="modal-title">Documentary</div></div>
+      <button class="modal-close" onclick="closeModal('docface')">&#10005;</button>
+    </div>
+    <p class="modal-desc">Face-led documentary style editing — talking head interviews, b-roll cutaways, and narrative pacing.</p>
+    <div class="modal-videos modal-videos p4">
+      <div class="mv"><div class="mv-frame landscape"><iframe src="" data-src="YOUR_DOCUMENTARY_VIDEO_1" allowfullscreen loading="lazy" title="Documentary 1"></iframe></div><div class="mv-label">Documentary 1</div></div>
+      <div class="mv"><div class="mv-frame landscape"><iframe src="" data-src="YOUR_DOCUMENTARY_VIDEO_2" allowfullscreen loading="lazy" title="Documentary 2"></iframe></div><div class="mv-label">Documentary 2</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Taking Ahead with Motion Graphics -->
+<div class="modal-bg" id="m-takingahead">
+  <div class="modal">
+    <div class="modal-head">
+      <div><div class="modal-tag">Long Form</div><div class="modal-title">Taking Ahead with Motion Graphics</div></div>
+      <button class="modal-close" onclick="closeModal('takingahead')">&#10005;</button>
+    </div>
+    <p class="modal-desc">Animated data-driven storytelling with motion graphics overlays, kinetic typography, and visual data-viz.</p>
+    <div class="modal-videos modal-videos p4">
+      <div class="mv"><div class="mv-frame landscape"><iframe src="" data-src="YOUR_TAKINGAHEAD_VIDEO_1" allowfullscreen loading="lazy" title="Taking Ahead 1"></iframe></div><div class="mv-label">Taking Ahead 1</div></div>
+      <div class="mv"><div class="mv-frame landscape"><iframe src="" data-src="YOUR_TAKINGAHEAD_VIDEO_2" allowfullscreen loading="lazy" title="Taking Ahead 2"></iframe></div><div class="mv-label">Taking Ahead 2</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 2D Animation & AI Videos -->
+<div class="modal-bg" id="m-animai">
+  <div class="modal">
+    <div class="modal-head">
+      <div><div class="modal-tag">Long Form</div><div class="modal-title">2D Animation &amp; AI Videos</div></div>
+      <button class="modal-close" onclick="closeModal('animai')">&#10005;</button>
+    </div>
+    <p class="modal-desc">Stick, character, and whiteboard 2D animation combined with AI-generated cinematic visuals and world-building.</p>
+    <div class="modal-videos modal-videos p4">
+      <div class="mv"><div class="mv-frame landscape"><iframe src="" data-src="YOUR_ANIMATION_VIDEO_1" allowfullscreen loading="lazy" title="2D Animation 1"></iframe></div><div class="mv-label">2D Animation 1</div></div>
+      <div class="mv"><div class="mv-frame landscape"><iframe src="" data-src="YOUR_AI_VIDEO_1" allowfullscreen loading="lazy" title="AI Video 1"></iframe></div><div class="mv-label">AI Generated Video 1</div></div>
+    </div>
+  </div>
+</div>
 
 <script>
 /* LOADER */
@@ -910,19 +1027,63 @@ function switchTab(type){
   });
 }
 
-/* MODALS */
+/* MODALS — short form iframes load on open, long form use data-src placeholders */
 function openModal(id){
-  var modal=document.getElementById('m-'+id);if(!modal)return;
-  modal.querySelectorAll('iframe[data-src]').forEach(function(iframe){if(!iframe.src||iframe.src===window.location.href||iframe.src==='about:blank'){iframe.src=iframe.dataset.src;}});
-  modal.classList.add('open');document.body.style.overflow='hidden';
+  var modal=document.getElementById('m-'+id);
+  if(!modal)return;
+  /* For long-form placeholder modals, load data-src on open */
+  modal.querySelectorAll('iframe[data-src]').forEach(function(iframe){
+    if((!iframe.src||iframe.src===window.location.href||iframe.src==='about:blank')&&iframe.dataset.src&&!iframe.dataset.src.startsWith('YOUR_')){
+      iframe.src=iframe.dataset.src;
+    }
+  });
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
 }
 function closeModal(id){
-  var modal=document.getElementById('m-'+id);if(!modal)return;
-  modal.querySelectorAll('iframe').forEach(function(iframe){try{iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}),'*');}catch(e){}iframe.src='about:blank';});
-  modal.classList.remove('open');document.body.style.overflow='';
+  var modal=document.getElementById('m-'+id);
+  if(!modal)return;
+  modal.querySelectorAll('iframe').forEach(function(iframe){
+    try{iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}),'*');}catch(e){}
+    /* For short form Wistia iframes, reload blank to stop audio */
+    iframe.src='about:blank';
+    /* If it had a data-src, restore src to blank so it reloads fresh next open */
+  });
+  modal.classList.remove('open');
+  document.body.style.overflow='';
 }
-document.querySelectorAll('.modal-bg').forEach(function(bd){bd.addEventListener('click',function(e){if(e.target===bd){closeModal(bd.id.replace('m-',''));}});});
-document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.modal-bg.open').forEach(function(b){closeModal(b.id.replace('m-',''));});}});
+/* Re-load Wistia short-form iframes on open (they have no data-src) */
+var wistiaIframes={
+  'mg':['4m9jj44zjp','260cp2hrqy','zu3dwsrk7e','c5kyr8ux1p','z8051s90u7','kp1zvei8fg'],
+  'saas':['97setsgtk2','tgplqf53uq','pgj4g2drrw'],
+  'typo':['f4pno6rmh2','2u9i0yqfot','6eur1jqina'],
+  'speed':['bl5qkef1cv','mvb1avcqmb','qn7vu4aqq2'],
+  'story':['k0jjpg7u4b','pza4dt740p'],
+  'other':['yb4o59lw63','pbbi4tfxnk']
+};
+var origOpen=window.openModal;
+window.openModal=function(id){
+  if(wistiaIframes[id]){
+    var modal=document.getElementById('m-'+id);
+    if(modal){
+      var iframes=modal.querySelectorAll('iframe');
+      var ids=wistiaIframes[id];
+      iframes.forEach(function(iframe,i){
+        if(ids[i]&&(!iframe.src||iframe.src==='about:blank'||iframe.src===window.location.href)){
+          iframe.src='https://fast.wistia.net/embed/iframe/'+ids[i]+'?videoFoam=true';
+        }
+      });
+    }
+  }
+  origOpen(id);
+};
+
+document.querySelectorAll('.modal-bg').forEach(function(bd){
+  bd.addEventListener('click',function(e){if(e.target===bd){closeModal(bd.id.replace('m-',''));}});
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){document.querySelectorAll('.modal-bg.open').forEach(function(b){closeModal(b.id.replace('m-',''));});}
+});
 
 /* CONTACT FORM */
 document.getElementById('contact-form').addEventListener('submit',function(e){e.preventDefault();showOk();this.reset();});
