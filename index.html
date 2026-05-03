@@ -9,7 +9,6 @@
 <meta name="author" content="Cinomedia">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://cinomedia.in/">
-<!-- CHANGE 3: favicon set to 3.png -->
 <link rel="icon" type="image/png" href="images/3.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://cinomedia.in/">
@@ -24,7 +23,6 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","name":"Cinomedia","description":"Premium video editing studio for creators and businesses.","url":"https://cinomedia.in","email":"editor@cinomedia.in","telephone":"+91-9411345394","address":{"@type":"PostalAddress","addressLocality":"Dehradun","addressRegion":"Uttarakhand","addressCountry":"IN"},"priceRange":"₹₹","openingHours":"Mo-Su 09:00-21:00","sameAs":["https://instagram.com/cinomedia.in"]}
 </script>
-<!-- Wistia player script -->
 <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -96,25 +94,432 @@ nav{position:fixed;top:0;left:0;right:0;z-index:600;padding:16px 60px;display:fl
 .mobile-menu-logo{margin-bottom:8px;}
 .mobile-menu-logo img{height:50px;width:auto;object-fit:contain;}
 
-/* HERO */
-#home{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 60px 80px;position:relative;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 80% 50%,rgba(201,168,76,0.07) 0%,transparent 70%),radial-gradient(ellipse 40% 60% at 10% 80%,rgba(201,168,76,0.04) 0%,transparent 60%);}
-.hero-vline{position:absolute;top:0;left:60px;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(201,168,76,0.25) 30%,rgba(201,168,76,0.25) 70%,transparent);}
-.hero-tag{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:32px;display:flex;align-items:center;gap:16px;animation:slideUp .8s .2s both;}
+/* ============================================================
+   HERO — ANIMATED CINEMATIC HERO
+   ============================================================ */
+#home {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:120px 60px 80px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Canvas particle layer */
+#hero-canvas {
+  position:absolute;
+  inset:0;
+  z-index:0;
+  opacity:0.55;
+}
+
+/* Film grain overlay */
+#home::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events:none;
+  animation: grainShift 0.15s steps(1) infinite;
+  opacity:0.35;
+}
+
+@keyframes grainShift {
+  0%   { background-position: 0 0; }
+  10%  { background-position: -15% -20%; }
+  20%  { background-position: 5% 10%; }
+  30%  { background-position: -10% 15%; }
+  40%  { background-position: 20% -5%; }
+  50%  { background-position: -5% 25%; }
+  60%  { background-position: 15% -15%; }
+  70%  { background-position: -20% 5%; }
+  80%  { background-position: 10% 20%; }
+  90%  { background-position: -25% -10%; }
+  100% { background-position: 0 0; }
+}
+
+/* Animated gradient orbs */
+.hero-orb {
+  position:absolute;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:0;
+  filter:blur(80px);
+}
+.hero-orb-1 {
+  width:600px; height:600px;
+  right:-100px; top:-100px;
+  background:radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  animation: orbFloat1 8s ease-in-out infinite;
+}
+.hero-orb-2 {
+  width:400px; height:400px;
+  left:-80px; bottom:100px;
+  background:radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+  animation: orbFloat2 11s ease-in-out infinite;
+}
+.hero-orb-3 {
+  width:300px; height:300px;
+  left:45%; top:20%;
+  background:radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+  animation: orbFloat3 7s ease-in-out infinite;
+}
+@keyframes orbFloat1 {
+  0%,100%{transform:translate(0,0) scale(1);}
+  50%{transform:translate(-40px,30px) scale(1.15);}
+}
+@keyframes orbFloat2 {
+  0%,100%{transform:translate(0,0) scale(1);}
+  50%{transform:translate(30px,-40px) scale(1.1);}
+}
+@keyframes orbFloat3 {
+  0%,100%{transform:translate(0,0) scale(1);}
+  33%{transform:translate(20px,30px) scale(1.08);}
+  66%{transform:translate(-30px,-10px) scale(0.95);}
+}
+
+/* Scanning light beam */
+.hero-scan {
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(201,168,76,0.03) 48%,
+    rgba(201,168,76,0.06) 50%,
+    rgba(201,168,76,0.03) 52%,
+    transparent 100%
+  );
+  background-size:100% 400%;
+  animation: scanLine 6s linear infinite;
+}
+@keyframes scanLine {
+  0% { background-position: 0 -100%; }
+  100% { background-position: 0 200%; }
+}
+
+/* Vertical line decoration */
+.hero-vline{
+  position:absolute;top:0;left:60px;
+  width:1px;height:100%;
+  background:linear-gradient(to bottom,transparent,rgba(201,168,76,0.25) 30%,rgba(201,168,76,0.25) 70%,transparent);
+  z-index:2;
+}
+.hero-vline::after {
+  content:'';
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:60px;
+  background:linear-gradient(to bottom, rgba(201,168,76,0.8), transparent);
+  animation: lineScan 4s ease-in-out infinite;
+}
+@keyframes lineScan {
+  0% { top: 0; opacity:1; }
+  100% { top: 100%; opacity:0; }
+}
+
+/* Hero content — above all layers */
+.hero-content {
+  position:relative;
+  z-index:3;
+}
+
+/* HERO TAG */
+.hero-tag{
+  font-size:10px;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:32px;
+  display:flex;align-items:center;gap:16px;
+  opacity:0;
+  animation: revealTag 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
+}
 .hero-tag::before{content:'';width:40px;height:1px;background:var(--gold);}
-#home h1{font-family:var(--serif);font-size:clamp(52px,8vw,124px);font-weight:300;line-height:.92;letter-spacing:-.02em;max-width:860px;animation:slideUp .9s .4s both;}
+.hero-tag-text {
+  overflow:hidden;
+  display:inline-block;
+}
+.hero-tag-inner {
+  display:inline-block;
+  animation: tagSlideIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s both;
+  transform: translateY(100%);
+}
+@keyframes tagSlideIn {
+  to { transform: translateY(0); }
+}
+@keyframes revealTag {
+  to { opacity:1; }
+}
+
+/* MAIN HEADLINE */
+#home h1{
+  font-family:var(--serif);
+  font-size:clamp(52px,8vw,124px);
+  font-weight:300;
+  line-height:.92;
+  letter-spacing:-.02em;
+  max-width:860px;
+  overflow:hidden;
+}
 #home h1 em{font-style:italic;color:var(--gold-light);}
-.hero-sub{max-width:460px;margin-top:44px;font-size:15px;line-height:1.8;color:var(--muted);font-weight:300;animation:slideUp .9s .6s both;}
-.hero-btns{margin-top:52px;display:flex;align-items:center;gap:40px;flex-wrap:wrap;animation:slideUp .9s .8s both;}
-.btn-gold{background:var(--gold);color:var(--black);font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:16px 40px;text-decoration:none;font-weight:500;transition:background .3s,transform .2s;display:inline-block;border:none;}
-.btn-gold:hover{background:var(--gold-light);transform:translateY(-1px);}
+
+/* Each word animates independently */
+.word-reveal {
+  display:inline-block;
+  overflow:hidden;
+  vertical-align:bottom;
+}
+.word-inner {
+  display:inline-block;
+  transform: translateY(110%) rotateX(-40deg);
+  opacity:0;
+  transform-origin: bottom;
+  animation: wordReveal 0.9s cubic-bezier(0.16,1,0.3,1) both;
+}
+.word-inner.w1 { animation-delay: 0.5s; }
+.word-inner.w2 { animation-delay: 0.65s; }
+.word-inner.w3 { animation-delay: 0.8s; }
+.word-inner.w4 { animation-delay: 0.95s; }
+.word-inner.w5 { animation-delay: 1.1s; }
+
+@keyframes wordReveal {
+  to { transform: translateY(0) rotateX(0); opacity:1; }
+}
+
+/* HERO SUBTITLE */
+.hero-sub{
+  max-width:460px;
+  margin-top:44px;
+  font-size:15px;
+  line-height:1.8;
+  color:var(--muted);
+  font-weight:300;
+  opacity:0;
+  transform: translateY(20px);
+  animation: subReveal 1s cubic-bezier(0.16,1,0.3,1) 1.3s forwards;
+}
+@keyframes subReveal {
+  to { opacity:1; transform:translateY(0); }
+}
+
+/* HERO BUTTONS */
+.hero-btns{
+  margin-top:52px;
+  display:flex;
+  align-items:center;
+  gap:40px;
+  flex-wrap:wrap;
+  opacity:0;
+  transform: translateY(20px);
+  animation: subReveal 1s cubic-bezier(0.16,1,0.3,1) 1.5s forwards;
+}
+.btn-gold{
+  background:var(--gold);color:var(--black);
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  padding:16px 40px;text-decoration:none;font-weight:500;
+  transition:background .3s,transform .2s,box-shadow .3s;
+  display:inline-block;border:none;
+  position:relative;overflow:hidden;
+}
+.btn-gold::before {
+  content:'';
+  position:absolute;
+  top:0; left:-100%;
+  width:100%; height:100%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transition: left 0.5s;
+}
+.btn-gold:hover::before { left:100%; }
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,168,76,0.35);}
 .btn-ghost{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:10px;transition:color .3s;}
 .btn-ghost::after{content:'→';transition:transform .3s;}
 .btn-ghost:hover{color:var(--white);}
 .btn-ghost:hover::after{transform:translateX(4px);}
-.hero-stats{position:absolute;bottom:60px;right:60px;display:flex;gap:48px;animation:fadeIn 1s 1s both;}
-.stat-num{font-family:var(--serif);font-size:38px;font-weight:300;color:var(--gold);line-height:1;}
+
+/* HERO STATS */
+.hero-stats{
+  position:absolute;bottom:60px;right:60px;
+  display:flex;gap:48px;
+  z-index:3;
+  opacity:0;
+  animation: subReveal 1s cubic-bezier(0.16,1,0.3,1) 1.7s forwards;
+}
+.stat-item {
+  text-align:right;
+  position:relative;
+}
+.stat-item::before {
+  content:'';
+  position:absolute;
+  bottom:-8px; right:0;
+  width:0; height:1px;
+  background:var(--gold);
+  animation: statLine 0.8s cubic-bezier(0.16,1,0.3,1) 2s forwards;
+}
+@keyframes statLine {
+  to { width:100%; }
+}
+.stat-num{
+  font-family:var(--serif);font-size:38px;font-weight:300;
+  color:var(--gold);line-height:1;
+}
 .stat-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:5px;text-align:right;}
+
+/* Floating film-strip decoration */
+.filmstrip {
+  position:absolute;
+  right:0; top:50%;
+  transform:translateY(-50%);
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  opacity:0;
+  animation: filmReveal 1.2s ease 1s forwards;
+  pointer-events:none;
+}
+@keyframes filmReveal {
+  to { opacity:0.15; }
+}
+.filmstrip-col {
+  display:flex;
+  flex-direction:column;
+}
+.film-hole {
+  width:24px; height:18px;
+  border:1px solid rgba(201,168,76,0.6);
+  border-radius:3px;
+  margin:3px;
+}
+.film-frame {
+  width:120px; height:80px;
+  border:1px solid rgba(201,168,76,0.3);
+  margin:2px;
+  background:rgba(201,168,76,0.03);
+  animation: frameFlicker 3s ease-in-out infinite;
+}
+.film-frame:nth-child(2) { animation-delay:0.4s; }
+.film-frame:nth-child(3) { animation-delay:0.8s; }
+.film-frame:nth-child(4) { animation-delay:1.2s; }
+@keyframes frameFlicker {
+  0%,100%{opacity:1;}
+  50%{opacity:0.5;}
+}
+
+/* Horizontal gold rule that draws in */
+.hero-rule {
+  position:absolute;
+  bottom:0; left:0;
+  height:1px;
+  width:0;
+  background:linear-gradient(to right, rgba(201,168,76,0.5), transparent);
+  z-index:3;
+  animation: ruleGrow 1.5s cubic-bezier(0.16,1,0.3,1) 0.5s forwards;
+}
+@keyframes ruleGrow {
+  to { width:100%; }
+}
+
+/* Corner accent animations */
+.hero-corner {
+  position:absolute;
+  z-index:3;
+  pointer-events:none;
+}
+.hero-corner-tl {
+  top:80px; left:30px;
+  width:40px; height:40px;
+  border-top:1px solid rgba(201,168,76,0.4);
+  border-left:1px solid rgba(201,168,76,0.4);
+  opacity:0;
+  animation: cornerReveal 0.6s ease 0.8s forwards;
+}
+.hero-corner-br {
+  bottom:40px; right:40px;
+  width:40px; height:40px;
+  border-bottom:1px solid rgba(201,168,76,0.4);
+  border-right:1px solid rgba(201,168,76,0.4);
+  opacity:0;
+  animation: cornerReveal 0.6s ease 0.9s forwards;
+}
+@keyframes cornerReveal {
+  to { opacity:1; }
+}
+
+/* Glitch effect on hover for headline */
+#home h1:hover .word-inner {
+  animation: glitchHover 0.3s step-end;
+}
+@keyframes glitchHover {
+  0%{text-shadow:none;}
+  20%{text-shadow:2px 0 var(--gold), -2px 0 rgba(0,200,200,0.5);}
+  40%{text-shadow:-2px 0 var(--gold), 2px 0 rgba(200,0,200,0.5);}
+  60%{text-shadow:2px 0 rgba(0,200,200,0.5), -2px 0 var(--gold);}
+  80%{text-shadow:none;}
+  100%{text-shadow:none;}
+}
+
+/* Cinematic letter-by-letter for "Art" word */
+.art-word {
+  display:inline-block;
+  position:relative;
+}
+.art-word::after {
+  content:'';
+  position:absolute;
+  bottom:0; left:0;
+  width:0; height:2px;
+  background:var(--gold);
+  animation: underlineGrow 0.8s cubic-bezier(0.16,1,0.3,1) 2s forwards;
+}
+@keyframes underlineGrow {
+  to { width:100%; }
+}
+
+/* Typewriter blinking cursor for subtitle */
+.hero-sub .cursor-blink {
+  display:inline-block;
+  width:2px; height:1em;
+  background:var(--gold);
+  margin-left:2px;
+  vertical-align:middle;
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+  0%,100%{opacity:1;}
+  50%{opacity:0;}
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position:absolute;
+  bottom:30px; left:60px;
+  z-index:3;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  opacity:0;
+  animation: subReveal 1s ease 2s forwards;
+}
+.scroll-line {
+  width:1px; height:40px;
+  background:linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%,100%{transform:scaleY(1);opacity:1;}
+  50%{transform:scaleY(0.5);opacity:0.5;}
+}
+.scroll-text {
+  font-size:9px; letter-spacing:.4em;
+  text-transform:uppercase; color:var(--muted);
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+}
 
 /* MARQUEE */
 .marquee-wrap{border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);padding:18px 0;overflow:hidden;background:var(--black-2);}
@@ -145,7 +550,7 @@ section{padding:110px 60px;}
 .s-title{font-family:var(--serif);font-size:clamp(34px,5vw,66px);font-weight:300;line-height:1.05;}
 .s-title em{font-style:italic;color:var(--gold-light);}
 
-/* SERVICES — CHANGE 2: section numbers match heading gold colour */
+/* SERVICES */
 #services{background:var(--black-3);}
 .svc-header{max-width:580px;margin-bottom:60px;}
 .svc-header p{color:var(--muted);font-size:15px;line-height:1.8;margin-top:20px;font-weight:300;}
@@ -154,7 +559,6 @@ section{padding:110px 60px;}
 .svc-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .45s cubic-bezier(0.16,1,0.3,1);transform-origin:left;}
 .svc-card:hover{background:var(--black-2);}
 .svc-card:hover::before{transform:scaleX(1);}
-/* CHANGE 2: .svc-n colour matches section heading colour = gold */
 .svc-n{font-family:var(--serif);font-size:50px;font-weight:300;color:var(--gold);line-height:1;margin-bottom:16px;opacity:0.55;}
 .svc-card h3{font-family:var(--serif);font-size:21px;font-weight:300;margin-bottom:10px;}
 .svc-card p{font-size:13px;color:var(--muted);line-height:1.8;font-weight:300;}
@@ -175,8 +579,6 @@ section{padding:110px 60px;}
 .cat-label span::before,.cat-label span::after{content:'';position:absolute;top:50%;width:80px;height:1px;background:rgba(201,168,76,0.35);}
 .cat-label span::before{right:100%;}
 .cat-label span::after{left:100%;}
-
-/* SHORT FORM */
 .short-strip{padding:0 60px 72px;display:grid;grid-template-columns:repeat(6,1fr);gap:14px;}
 .short-card{border-radius:14px;overflow:hidden;position:relative;aspect-ratio:9/16;background:var(--black-3);border:1px solid rgba(255,255,255,0.09);transition:transform .4s cubic-bezier(0.16,1,0.3,1),border-color .3s,box-shadow .4s;cursor:pointer;}
 .short-card:hover{transform:translateY(-8px);border-color:rgba(201,168,76,0.55);box-shadow:0 20px 50px rgba(0,0,0,0.5);}
@@ -186,8 +588,6 @@ section{padding:110px 60px;}
 .short-card:hover .sc-play{opacity:1;transform:translate(-50%,-50%) scale(1.1);}
 .sc-cat{font-size:9px;color:var(--gold);font-weight:500;letter-spacing:.08em;margin-bottom:3px;}
 .sc-title{font-size:11px;color:var(--white);line-height:1.3;font-weight:300;}
-
-/* LONG FORM — CHANGE 1: updated layout */
 .long-grid{padding:0 60px 80px;display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:1400px;margin:0 auto;}
 .long-card{border-radius:12px;overflow:hidden;position:relative;cursor:pointer;aspect-ratio:16/9;background:var(--black-3);border:1px solid rgba(255,255,255,0.09);transition:transform .4s cubic-bezier(0.16,1,0.3,1),border-color .3s,box-shadow .4s;}
 .long-card:hover{transform:translateY(-5px);border-color:rgba(201,168,76,0.55);box-shadow:0 16px 48px rgba(0,0,0,0.5);}
@@ -220,7 +620,7 @@ section{padding:110px 60px;}
 .num-suffix{font-family:var(--serif);font-size:36px;color:var(--gold);}
 .num-label{font-size:11px;color:var(--muted);letter-spacing:.1em;margin-top:8px;font-weight:300;text-transform:uppercase;}
 
-/* PROCESS — CHANGE 2: step numbers match "How It Works" heading = gold */
+/* PROCESS */
 #process{background:var(--black);overflow:hidden;}
 .proc-header{max-width:540px;margin-bottom:70px;}
 .proc-steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.07);}
@@ -228,7 +628,6 @@ section{padding:110px 60px;}
 .proc-step-box:hover{background:var(--black-2);border-top-color:var(--gold);}
 .proc-step-num-label{font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;gap:10px;}
 .proc-step-num-label::before{content:'';width:20px;height:1px;background:var(--gold);}
-/* CHANGE 2: big step numbers = gold (matching "How It Works" heading) */
 .proc-big-num{font-family:var(--serif);font-size:64px;font-weight:300;color:var(--gold);opacity:0.18;line-height:1;margin-bottom:16px;}
 .proc-step-box h4{font-family:var(--serif);font-size:20px;font-weight:300;margin-bottom:10px;color:var(--white);}
 .proc-step-box p{font-size:12px;color:var(--muted);line-height:1.8;font-weight:300;}
@@ -339,7 +738,6 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
 .mv-frame.landscape{aspect-ratio:16/9;}
 .mv-frame.portrait{aspect-ratio:9/16;}
 .mv-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:block;}
-/* Wistia embed styles */
 .mv-frame .wistia_embed{position:absolute;top:0;left:0;width:100%;height:100%;}
 .mv.portrait .mv-frame{aspect-ratio:9/16;}
 .mv-label{padding:8px 12px;font-size:11px;color:var(--muted);}
@@ -352,6 +750,8 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
   #home{padding:100px 22px 80px;}
   .hero-stats{position:static;margin-top:44px;flex-wrap:wrap;gap:22px;}
   .hero-vline{display:none;}
+  .filmstrip{display:none;}
+  .scroll-indicator{display:none;}
   section{padding:64px 22px;}
   #clients{padding:64px 22px;}
   .creators-row{gap:20px;}
@@ -432,20 +832,78 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
   <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
+<!-- ============================================================
+     HERO SECTION — HIGHLY ANIMATED
+     ============================================================ -->
 <section id="home">
-  <div class="hero-bg"></div>
+  <!-- Particle canvas -->
+  <canvas id="hero-canvas"></canvas>
+
+  <!-- Animated glow orbs -->
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+
+  <!-- Scanning light effect -->
+  <div class="hero-scan"></div>
+
+  <!-- Vertical line with moving glow -->
   <div class="hero-vline"></div>
-  <div class="hero-tag">Premium Video Editing Studio</div>
-  <h1>We Turn<br>Raw Footage<br>Into <em>Art</em></h1>
-  <p class="hero-sub">Professional video editing for businesses and creators who demand excellence. Every cut is intentional. Every frame, deliberate.</p>
-  <div class="hero-btns">
-    <a href="#contact" class="btn-gold">Start Your Project</a>
-    <a href="#work" class="btn-ghost">View Our Work</a>
+
+  <!-- Bottom rule that draws in -->
+  <div class="hero-rule"></div>
+
+  <!-- Corner accents -->
+  <div class="hero-corner hero-corner-tl"></div>
+  <div class="hero-corner hero-corner-br"></div>
+
+  <!-- Film strip decoration -->
+  <div class="filmstrip">
+    <div class="filmstrip-col">
+      <div class="film-frame"></div>
+      <div class="film-frame"></div>
+      <div class="film-frame"></div>
+      <div class="film-frame"></div>
+      <div class="film-frame"></div>
+    </div>
   </div>
-  <div class="hero-stats">
-    <div><div class="stat-num">200+</div><div class="stat-label">Projects Done</div></div>
-    <div><div class="stat-num">98%</div><div class="stat-label">Satisfaction</div></div>
-    <div><div class="stat-num">5yr</div><div class="stat-label">Experience</div></div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <div class="scroll-text">Scroll</div>
+  </div>
+
+  <!-- HERO CONTENT -->
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="hero-tag-text"><span class="hero-tag-inner">Premium Video Editing Studio</span></span>
+    </div>
+
+    <h1>
+      <div style="display:block;">
+        <span class="word-reveal"><span class="word-inner w1">We </span></span><span class="word-reveal"><span class="word-inner w2">Turn</span></span>
+      </div>
+      <div style="display:block;">
+        <span class="word-reveal"><span class="word-inner w3">Raw </span></span><span class="word-reveal"><span class="word-inner w4">Footage</span></span>
+      </div>
+      <div style="display:block;">
+        Into <em><span class="art-word word-reveal"><span class="word-inner w5">Art</span></span></em>
+      </div>
+    </h1>
+
+    <p class="hero-sub" id="hero-sub-text">Professional video editing for businesses and creators who demand excellence. Every cut is intentional. Every frame, deliberate.</p>
+
+    <div class="hero-btns">
+      <a href="#contact" class="btn-gold">Start Your Project</a>
+      <a href="#work" class="btn-ghost">View Our Work</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">200+</div><div class="stat-label">Projects Done</div></div>
+      <div class="stat-item"><div class="stat-num">98%</div><div class="stat-label">Satisfaction</div></div>
+      <div class="stat-item"><div class="stat-num">5yr</div><div class="stat-label">Experience</div></div>
+    </div>
   </div>
 </section>
 
@@ -494,7 +952,6 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
   </div>
 </section>
 
-<!-- SERVICES — CHANGE 2: numbers (.svc-n) now gold -->
 <section id="services">
   <div class="svc-header">
     <div class="s-tag">What We Do</div>
@@ -523,14 +980,12 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
   </div>
 </section>
 
-<!-- OUR WORK — CHANGE 1 (long form cards) + CHANGE 4 (short form wistia links) -->
 <section id="work" style="padding:110px 0 80px;">
   <div class="work-inner">
     <div class="s-tag">Selected Work</div>
     <h2>Stories we've <em>shaped</em></h2>
     <p style="font-size:14px;color:var(--muted);line-height:1.8;max-width:520px;font-weight:300;margin-top:14px;">Click any category to see all videos in that style.</p>
   </div>
-
   <div class="cat-label"><span>Short Form Videos</span></div>
   <div class="short-strip">
     <div class="short-card" onclick="openModal('mg')">
@@ -558,8 +1013,6 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
       <div class="sc-overlay"><div class="sc-play">&#9654;</div><div class="sc-cat">Other Styles</div><div class="sc-title">AI &amp; More</div></div>
     </div>
   </div>
-
-  <!-- CHANGE 1: Long form cards — Faceless Documentary, Documentary, Taking Ahead w/ Motion Graphics, 2D Animation & AI Videos -->
   <div class="cat-label"><span>Long Form Videos</span></div>
   <div class="long-grid">
     <div class="long-card" onclick="openModal('faceless')">
@@ -581,7 +1034,6 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
   </div>
 </section>
 
-<!-- WHY US -->
 <section id="whyus">
   <div class="whyus-bg">CRAFT</div>
   <div class="whyus-layout">
@@ -608,7 +1060,6 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
   <div class="num-cell"><div class="num-val"><span class="count" data-target="5">5</span><span class="num-suffix">yr</span></div><div class="num-label">Experience</div></div>
 </div>
 
-<!-- PROCESS — CHANGE 2: big numbers (.proc-big-num) now gold -->
 <section id="process">
   <div class="proc-header">
     <div class="s-tag">How It Works</div>
@@ -783,13 +1234,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
   </div>
 </footer>
 
-<!-- =====================================================================
-     MODALS — SHORT FORM (CHANGE 4: all Wistia links correctly assigned)
-     Each Wistia URL converted to embed format:
-     https://canvadevil6577.wistia.com/medias/ID → iframe src using /embed/iframe/ID
-     ===================================================================== -->
-
-<!-- Motion Graphics: 6 videos (portrait) -->
+<!-- All modals preserved exactly as original -->
 <div class="modal-bg" id="m-mg">
   <div class="modal">
     <div class="modal-head">
@@ -807,8 +1252,6 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
     </div>
   </div>
 </div>
-
-<!-- 0x100x SaaS: 3 videos (portrait) -->
 <div class="modal-bg" id="m-saas">
   <div class="modal">
     <div class="modal-head">
@@ -823,8 +1266,6 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
     </div>
   </div>
 </div>
-
-<!-- Typography: 3 videos (portrait) -->
 <div class="modal-bg" id="m-typo">
   <div class="modal">
     <div class="modal-head">
@@ -839,8 +1280,6 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
     </div>
   </div>
 </div>
-
-<!-- Speed Ramp: 3 videos (portrait) -->
 <div class="modal-bg" id="m-speed">
   <div class="modal">
     <div class="modal-head">
@@ -855,8 +1294,6 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
     </div>
   </div>
 </div>
-
-<!-- Documentary & Geo (Storytelling): 2 videos (portrait) -->
 <div class="modal-bg" id="m-story">
   <div class="modal">
     <div class="modal-head">
@@ -870,8 +1307,6 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
     </div>
   </div>
 </div>
-
-<!-- AI & Other: 2 videos (portrait) -->
 <div class="modal-bg" id="m-other">
   <div class="modal">
     <div class="modal-head">
@@ -885,15 +1320,6 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
     </div>
   </div>
 </div>
-
-<!-- =====================================================================
-     MODALS — LONG FORM (CHANGE 1: new card structure)
-     These 4 modals are placeholders — add real video links when ready
-     ===================================================================== -->
-
-<!-- Faceless Documentary -->
-<!-- HOW TO ADD YOUTUBE: replace VIDEO_ID below with the ID from your YouTube URL -->
-<!-- Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ → VIDEO_ID = dQw4w9WgXcQ -->
 <div class="modal-bg" id="m-faceless">
   <div class="modal">
     <div class="modal-head">
@@ -907,10 +1333,6 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
     </div>
   </div>
 </div>
-
-<!-- Documentary (Face-led) -->
-<!-- HOW TO ADD YOUTUBE: replace VIDEO_ID below with the ID from your YouTube URL -->
-<!-- Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ → VIDEO_ID = dQw4w9WgXcQ -->
 <div class="modal-bg" id="m-docface">
   <div class="modal">
     <div class="modal-head">
@@ -924,10 +1346,6 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
     </div>
   </div>
 </div>
-
-<!-- Taking Ahead with Motion Graphics -->
-<!-- HOW TO ADD YOUTUBE: replace VIDEO_ID below with the ID from your YouTube URL -->
-<!-- Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ → VIDEO_ID = dQw4w9WgXcQ -->
 <div class="modal-bg" id="m-takingahead">
   <div class="modal">
     <div class="modal-head">
@@ -941,10 +1359,6 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
     </div>
   </div>
 </div>
-
-<!-- 2D Animation & AI Videos -->
-<!-- HOW TO ADD YOUTUBE: replace VIDEO_ID below with the ID from your YouTube URL -->
-<!-- Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ → VIDEO_ID = dQw4w9WgXcQ -->
 <div class="modal-bg" id="m-animai">
   <div class="modal">
     <div class="modal-head">
@@ -961,6 +1375,110 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
 </div>
 
 <script>
+/* ============================================================
+   PARTICLE SYSTEM — cinematic floating dust/bokeh
+   ============================================================ */
+(function(){
+  var canvas = document.getElementById('hero-canvas');
+  var ctx = canvas.getContext('2d');
+  var particles = [];
+  var mouse = { x: -1000, y: -1000 };
+
+  function resize(){
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  document.getElementById('home').addEventListener('mousemove', function(e){
+    var rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+
+  // Create particles
+  var GOLD = {r:201, g:168, b:76};
+  for(var i = 0; i < 90; i++){
+    particles.push({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4 - 0.1,
+      size: Math.random() * 2.5 + 0.5,
+      opacity: Math.random() * 0.6 + 0.1,
+      pulse: Math.random() * Math.PI * 2,
+      pulseSpeed: 0.02 + Math.random() * 0.02
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw connection lines between nearby particles
+    for(var i = 0; i < particles.length; i++){
+      for(var j = i+1; j < particles.length; j++){
+        var dx = particles[i].x - particles[j].x;
+        var dy = particles[i].y - particles[j].y;
+        var dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < 120){
+          ctx.beginPath();
+          ctx.strokeStyle = 'rgba('+GOLD.r+','+GOLD.g+','+GOLD.b+','+(0.08*(1-dist/120))+')';
+          ctx.lineWidth = 0.5;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    for(var i = 0; i < particles.length; i++){
+      var p = particles[i];
+
+      // Mouse repulsion
+      var mdx = p.x - mouse.x;
+      var mdy = p.y - mouse.y;
+      var md = Math.sqrt(mdx*mdx + mdy*mdy);
+      if(md < 120){
+        var force = (120 - md) / 120 * 0.8;
+        p.vx += (mdx / md) * force * 0.05;
+        p.vy += (mdy / md) * force * 0.05;
+      }
+
+      // Speed limit
+      var speed = Math.sqrt(p.vx*p.vx + p.vy*p.vy);
+      if(speed > 1.5){ p.vx *= 0.95; p.vy *= 0.95; }
+
+      // Drift deceleration
+      p.vx *= 0.99;
+      p.vy *= 0.99;
+      if(Math.abs(p.vx) < 0.15) p.vx += (Math.random()-0.5)*0.05;
+      if(Math.abs(p.vy) < 0.05) p.vy -= 0.02;
+
+      p.x += p.vx;
+      p.y += p.vy;
+      p.pulse += p.pulseSpeed;
+
+      // Wrap
+      if(p.x < 0) p.x = canvas.width;
+      if(p.x > canvas.width) p.x = 0;
+      if(p.y < 0) p.y = canvas.height;
+      if(p.y > canvas.height) p.y = 0;
+
+      var alpha = p.opacity * (0.7 + 0.3 * Math.sin(p.pulse));
+      ctx.beginPath();
+      var grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 2);
+      grd.addColorStop(0, 'rgba('+GOLD.r+','+GOLD.g+','+GOLD.b+','+alpha+')');
+      grd.addColorStop(1, 'rgba('+GOLD.r+','+GOLD.g+','+GOLD.b+',0)');
+      ctx.fillStyle = grd;
+      ctx.arc(p.x, p.y, p.size * 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
 /* LOADER */
 (function(){
   var loader=document.getElementById('loader'),minTime=2500,start=Date.now();
@@ -1014,7 +1532,7 @@ function toggleSvc(card){
   if(!isOpen)card.classList.add('open');
 }
 
-/* COUNT UP on load */
+/* COUNT UP */
 window.addEventListener('load',function(){
   document.querySelectorAll('.count').forEach(function(el){
     var tgt=+el.dataset.target,dur=1800,s=performance.now();
@@ -1036,33 +1554,7 @@ function switchTab(type){
   });
 }
 
-/* MODALS — short form iframes load on open, long form use data-src placeholders */
-function openModal(id){
-  var modal=document.getElementById('m-'+id);
-  if(!modal)return;
-  /* Load data-src iframes (long-form YouTube) on open */
-  modal.querySelectorAll('iframe[data-src]').forEach(function(iframe){
-    var ds=iframe.dataset.src;
-    if(ds && !ds.includes('_VIDEO_ID') && (!iframe.src||iframe.src===window.location.href||iframe.src==='about:blank')){
-      iframe.src=ds;
-    }
-  });
-  modal.classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeModal(id){
-  var modal=document.getElementById('m-'+id);
-  if(!modal)return;
-  modal.querySelectorAll('iframe').forEach(function(iframe){
-    try{iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}),'*');}catch(e){}
-    /* For short form Wistia iframes, reload blank to stop audio */
-    iframe.src='about:blank';
-    /* If it had a data-src, restore src to blank so it reloads fresh next open */
-  });
-  modal.classList.remove('open');
-  document.body.style.overflow='';
-}
-/* Re-load Wistia short-form iframes on open (they have no data-src) */
+/* MODALS */
 var wistiaIframes={
   'mg':['4m9jj44zjp','260cp2hrqy','zu3dwsrk7e','c5kyr8ux1p','z8051s90u7','kp1zvei8fg'],
   'saas':['97setsgtk2','tgplqf53uq','pgj4g2drrw'],
@@ -1071,22 +1563,39 @@ var wistiaIframes={
   'story':['k0jjpg7u4b','pza4dt740p'],
   'other':['yb4o59lw63','pbbi4tfxnk']
 };
-var origOpen=window.openModal;
-window.openModal=function(id){
-  if(wistiaIframes[id]){
-    var modal=document.getElementById('m-'+id);
-    if(modal){
-      var iframes=modal.querySelectorAll('iframe');
-      var ids=wistiaIframes[id];
-      iframes.forEach(function(iframe,i){
-        if(ids[i]&&(!iframe.src||iframe.src==='about:blank'||iframe.src===window.location.href)){
-          iframe.src='https://fast.wistia.net/embed/iframe/'+ids[i]+'?videoFoam=true';
-        }
-      });
+
+function openModal(id){
+  var modal=document.getElementById('m-'+id);
+  if(!modal)return;
+  modal.querySelectorAll('iframe[data-src]').forEach(function(iframe){
+    var ds=iframe.dataset.src;
+    if(ds&&(!iframe.src||iframe.src===window.location.href||iframe.src==='about:blank')){
+      iframe.src=ds;
     }
+  });
+  if(wistiaIframes[id]){
+    var iframes=modal.querySelectorAll('iframe');
+    var ids=wistiaIframes[id];
+    iframes.forEach(function(iframe,i){
+      if(ids[i]&&(!iframe.src||iframe.src==='about:blank'||iframe.src===window.location.href)){
+        iframe.src='https://fast.wistia.net/embed/iframe/'+ids[i]+'?videoFoam=true';
+      }
+    });
   }
-  origOpen(id);
-};
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(id){
+  var modal=document.getElementById('m-'+id);
+  if(!modal)return;
+  modal.querySelectorAll('iframe').forEach(function(iframe){
+    try{iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}),'*');}catch(e){}
+    iframe.src='about:blank';
+  });
+  modal.classList.remove('open');
+  document.body.style.overflow='';
+}
 
 document.querySelectorAll('.modal-bg').forEach(function(bd){
   bd.addEventListener('click',function(e){if(e.target===bd){closeModal(bd.id.replace('m-',''));}});
