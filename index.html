@@ -188,7 +188,7 @@ section{padding:110px 60px;}
 .sc-title{font-size:11px;color:var(--white);line-height:1.3;font-weight:300;}
 
 /* LONG FORM — CHANGE 1: updated layout */
-.long-grid{padding:0 60px 80px;display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.long-grid{padding:0 60px 80px;display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:1400px;margin:0 auto;}
 .long-card{border-radius:12px;overflow:hidden;position:relative;cursor:pointer;aspect-ratio:16/9;background:var(--black-3);border:1px solid rgba(255,255,255,0.09);transition:transform .4s cubic-bezier(0.16,1,0.3,1),border-color .3s,box-shadow .4s;}
 .long-card:hover{transform:translateY(-5px);border-color:rgba(201,168,76,0.55);box-shadow:0 16px 48px rgba(0,0,0,0.5);}
 .lc-bg{width:100%;height:100%;position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;}
@@ -542,7 +542,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
       <div class="sc-overlay"><div class="sc-play">&#9654;</div><div class="sc-cat">SaaS Videos</div><div class="sc-title">0x100x style</div></div>
     </div>
     <div class="short-card" onclick="openModal('typo')">
-      <div class="sc-bg" data-bg="images/typo.png"></div>
+      <div class="sc-bg" data-bg="images/motion.jpg"></div>
       <div class="sc-overlay"><div class="sc-play">&#9654;</div><div class="sc-cat">Typography Videos</div><div class="sc-title">Business &amp; Content</div></div>
     </div>
     <div class="short-card" onclick="openModal('speed')">
@@ -892,6 +892,8 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
      ===================================================================== -->
 
 <!-- Faceless Documentary -->
+<!-- HOW TO ADD YOUTUBE: replace VIDEO_ID below with the ID from your YouTube URL -->
+<!-- Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ → VIDEO_ID = dQw4w9WgXcQ -->
 <div class="modal-bg" id="m-faceless">
   <div class="modal">
     <div class="modal-head">
@@ -899,14 +901,16 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
       <button class="modal-close" onclick="closeModal('faceless')">&#10005;</button>
     </div>
     <p class="modal-desc">Cinematic faceless storytelling — no talking head, pure visual narration with motion graphics and b-roll.</p>
-    <div class="modal-videos modal-videos p4">
-      <div class="mv"><div class="mv-frame landscape"><iframe src="" data-src="YOUR_FACELESS_VIDEO_1" allowfullscreen loading="lazy" title="Faceless Doc 1"></iframe></div><div class="mv-label">Faceless Documentary 1</div></div>
-      <div class="mv"><div class="mv-frame landscape"><iframe src="" data-src="YOUR_FACELESS_VIDEO_2" allowfullscreen loading="lazy" title="Faceless Doc 2"></iframe></div><div class="mv-label">Faceless Documentary 2</div></div>
+    <div class="modal-videos p4">
+      <div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/FACELESS_VIDEO_ID_1?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Faceless Doc 1"></iframe></div><div class="mv-label">Faceless Documentary 1</div></div>
+      <div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/FACELESS_VIDEO_ID_2?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Faceless Doc 2"></iframe></div><div class="mv-label">Faceless Documentary 2</div></div>
     </div>
   </div>
 </div>
 
 <!-- Documentary (Face-led) -->
+<!-- HOW TO ADD YOUTUBE: replace VIDEO_ID below with the ID from your YouTube URL -->
+<!-- Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ → VIDEO_ID = dQw4w9WgXcQ -->
 <div class="modal-bg" id="m-docface">
   <div class="modal">
     <div class="modal-head">
@@ -914,14 +918,16 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
       <button class="modal-close" onclick="closeModal('docface')">&#10005;</button>
     </div>
     <p class="modal-desc">Face-led documentary style editing — talking head interviews, b-roll cutaways, and narrative pacing.</p>
-    <div class="modal-videos modal-videos p4">
-      <div class="mv"><div class="mv-frame landscape"><iframe src="" data-src="https://youtu.be/fp5Ijq3j5ME?si=TEk411d5V3yJf5-T" allowfullscreen loading="lazy" title="Documentary 1"></iframe></div><div class="mv-label">Documentary 1</div></div>
-      <div class="mv"><div class="mv-frame landscape"><iframe src="" data-src="YOUR_DOCUMENTARY_VIDEO_2" allowfullscreen loading="lazy" title="Documentary 2"></iframe></div><div class="mv-label">Documentary 2</div></div>
+    <div class="modal-videos p4">
+      <div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/DOCUMENTARY_VIDEO_ID_1?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Documentary 1"></iframe></div><div class="mv-label">Documentary 1</div></div>
+      <div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/DOCUMENTARY_VIDEO_ID_2?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Documentary 2"></iframe></div><div class="mv-label">Documentary 2</div></div>
     </div>
   </div>
 </div>
 
 <!-- Taking Ahead with Motion Graphics -->
+<!-- HOW TO ADD YOUTUBE: replace VIDEO_ID below with the ID from your YouTube URL -->
+<!-- Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ → VIDEO_ID = dQw4w9WgXcQ -->
 <div class="modal-bg" id="m-takingahead">
   <div class="modal">
     <div class="modal-head">
@@ -929,14 +935,16 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
       <button class="modal-close" onclick="closeModal('takingahead')">&#10005;</button>
     </div>
     <p class="modal-desc">Animated data-driven storytelling with motion graphics overlays, kinetic typography, and visual data-viz.</p>
-    <div class="modal-videos modal-videos p4">
-      <div class="mv"><div class="mv-frame landscape"><iframe src="" data-src="YOUR_TAKINGAHEAD_VIDEO_1" allowfullscreen loading="lazy" title="Taking Ahead 1"></iframe></div><div class="mv-label">Taking Ahead 1</div></div>
-      <div class="mv"><div class="mv-frame landscape"><iframe src="" data-src="YOUR_TAKINGAHEAD_VIDEO_2" allowfullscreen loading="lazy" title="Taking Ahead 2"></iframe></div><div class="mv-label">Taking Ahead 2</div></div>
+    <div class="modal-videos p4">
+      <div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/TAKINGAHEAD_VIDEO_ID_1?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Taking Ahead 1"></iframe></div><div class="mv-label">Taking Ahead 1</div></div>
+      <div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/TAKINGAHEAD_VIDEO_ID_2?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Taking Ahead 2"></iframe></div><div class="mv-label">Taking Ahead 2</div></div>
     </div>
   </div>
 </div>
 
 <!-- 2D Animation & AI Videos -->
+<!-- HOW TO ADD YOUTUBE: replace VIDEO_ID below with the ID from your YouTube URL -->
+<!-- Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ → VIDEO_ID = dQw4w9WgXcQ -->
 <div class="modal-bg" id="m-animai">
   <div class="modal">
     <div class="modal-head">
@@ -944,9 +952,9 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
       <button class="modal-close" onclick="closeModal('animai')">&#10005;</button>
     </div>
     <p class="modal-desc">Stick, character, and whiteboard 2D animation combined with AI-generated cinematic visuals and world-building.</p>
-    <div class="modal-videos modal-videos p4">
-      <div class="mv"><div class="mv-frame landscape"><iframe src="" data-src="YOUR_ANIMATION_VIDEO_1" allowfullscreen loading="lazy" title="2D Animation 1"></iframe></div><div class="mv-label">2D Animation 1</div></div>
-      <div class="mv"><div class="mv-frame landscape"><iframe src="" data-src="YOUR_AI_VIDEO_1" allowfullscreen loading="lazy" title="AI Video 1"></iframe></div><div class="mv-label">AI Generated Video 1</div></div>
+    <div class="modal-videos p4">
+      <div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/ANIMATION_VIDEO_ID_1?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="2D Animation 1"></iframe></div><div class="mv-label">2D Animation 1</div></div>
+      <div class="mv"><div class="mv-frame landscape"><iframe data-src="https://www.youtube.com/embed/AI_VIDEO_ID_1?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="AI Video 1"></iframe></div><div class="mv-label">AI Generated Video 1</div></div>
     </div>
   </div>
 </div>
@@ -1031,10 +1039,11 @@ function switchTab(type){
 function openModal(id){
   var modal=document.getElementById('m-'+id);
   if(!modal)return;
-  /* For long-form placeholder modals, load data-src on open */
+  /* Load data-src iframes (long-form YouTube) on open */
   modal.querySelectorAll('iframe[data-src]').forEach(function(iframe){
-    if((!iframe.src||iframe.src===window.location.href||iframe.src==='about:blank')&&iframe.dataset.src&&!iframe.dataset.src.startsWith('YOUR_')){
-      iframe.src=iframe.dataset.src;
+    var ds=iframe.dataset.src;
+    if(ds && !ds.includes('_VIDEO_ID') && (!iframe.src||iframe.src===window.location.href||iframe.src==='about:blank')){
+      iframe.src=ds;
     }
   });
   modal.classList.add('open');
