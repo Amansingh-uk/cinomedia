@@ -2,94 +2,76 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Advanced Expense Calculator</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Expense Calculator</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
 body {
-  background: #0d0d0d;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  padding: 30px;
+  font-family: "Segoe UI", sans-serif;
+  background: #f2f2f2;
+  margin: 0;
+  padding: 20px;
 }
 
 .container {
-  width: 100%;
-  max-width: 900px;
+  max-width: 1100px;
+  margin: auto;
 }
 
 h1 {
-  margin-bottom: 20px;
-  font-size: 28px;
+  text-align: center;
+  background: #888;
+  color: white;
+  padding: 15px;
 }
 
-.card {
-  background: #111;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 20px;
+.section {
+  margin-top: 25px;
 }
 
-input, select {
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+}
+
+input {
   padding: 10px;
-  margin: 5px;
-  border-radius: 6px;
-  border: none;
-  outline: none;
+  border-radius: 8px;
+  border: 2px solid #ff6b6b;
+  width: 100%;
+}
+
+.label {
+  background: #d99b4c;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.total-box {
+  background: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  border: 2px solid #ffa94d;
+  font-weight: bold;
 }
 
 button {
-  padding: 10px 15px;
-  border: none;
-  background: #f5a623;
-  color: #000;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.9;
-}
-
-.expense-list {
-  margin-top: 20px;
-}
-
-.expense-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  background: #1a1a1a;
-  border-radius: 6px;
-  margin-bottom: 10px;
-}
-
-.total {
-  font-size: 20px;
-  margin-top: 15px;
-}
-
-.category-box {
-  margin-top: 15px;
-}
-
-.category-box div {
-  margin: 5px 0;
-  font-size: 14px;
-}
-
-.delete-btn {
-  background: red;
+  background: green;
   color: white;
-  padding: 5px 10px;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  margin-top: 15px;
+  cursor: pointer;
+  width: 200px;
+}
+
+.result {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
 }
 </style>
 </head>
@@ -97,112 +79,117 @@ button:hover {
 <body>
 
 <div class="container">
+<h1>Expense Calculator</h1>
 
-  <h1>💸 Expense Calculator</h1>
+<!-- INCOME -->
+<div class="section">
+<div class="label">Income</div>
+<div class="grid">
+<input placeholder="Your Salary" id="salary">
+<input type="number" value="0" id="salaryVal">
 
-  <!-- Input -->
-  <div class="card">
-    <input type="text" id="name" placeholder="Expense Name">
-    <input type="number" id="amount" placeholder="Amount">
-    
-    <select id="category">
-      <option>Food</option>
-      <option>Transport</option>
-      <option>Shopping</option>
-      <option>Bills</option>
-      <option>Other</option>
-    </select>
+<input placeholder="Partner Salary">
+<input type="number" value="0" id="partner">
 
-    <button onclick="addExpense()">Add</button>
-  </div>
+<input placeholder="Other Income">
+<input type="number" value="0" id="other">
+</div>
 
-  <!-- List -->
-  <div class="card">
-    <h3>Expenses</h3>
-    <div class="expense-list" id="list"></div>
+<div class="total-box">Total Income: ₹ <span id="incomeTotal">0</span></div>
+</div>
 
-    <div class="total">Total: ₹ <span id="total">0</span></div>
+<!-- ESSENTIAL -->
+<div class="section">
+<div class="label">Essential Expenses</div>
+<div class="grid">
 
-    <div class="category-box" id="categories"></div>
-  </div>
+<input placeholder="Groceries">
+<input type="number" value="0" class="ess">
+
+<input placeholder="Bills">
+<input type="number" value="0" class="ess">
+
+<input placeholder="EMI">
+<input type="number" value="0" class="ess">
+
+<input placeholder="Insurance">
+<input type="number" value="0" class="ess">
+
+</div>
+
+<div class="total-box">Essential Total: ₹ <span id="essTotal">0</span></div>
+</div>
+
+<!-- NON ESSENTIAL -->
+<div class="section">
+<div class="label">Non Essential</div>
+<div class="grid">
+
+<input placeholder="Shopping">
+<input type="number" value="0" class="non">
+
+<input placeholder="Movies">
+<input type="number" value="0" class="non">
+
+<input placeholder="Eating Out">
+<input type="number" value="0" class="non">
+
+<input placeholder="Others">
+<input type="number" value="0" class="non">
+
+</div>
+
+<div class="total-box">Non Essential Total: ₹ <span id="nonTotal">0</span></div>
+</div>
+
+<button onclick="calculate()">CALCULATE</button>
+
+<!-- RESULT -->
+<div class="result">
+
+<div class="total-box">Your Income: ₹ <span id="resIncome">0</span></div>
+<div class="total-box">Expenses: ₹ <span id="resExpense">0</span></div>
+
+<div class="total-box">Savings: ₹ <span id="resSavings">0</span></div>
+<div class="total-box">EMI: ₹ <span id="resEmi">0</span></div>
+
+</div>
 
 </div>
 
 <script>
-let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
-
-function saveData() {
-  localStorage.setItem("expenses", JSON.stringify(expenses));
-}
-
-function addExpense() {
-  let name = document.getElementById("name").value;
-  let amount = document.getElementById("amount").value;
-  let category = document.getElementById("category").value;
-
-  if (!name || !amount) {
-    alert("Fill all fields");
-    return;
-  }
-
-  expenses.push({
-    id: Date.now(),
-    name,
-    amount: Number(amount),
-    category
-  });
-
-  saveData();
-  render();
-
-  document.getElementById("name").value = "";
-  document.getElementById("amount").value = "";
-}
-
-function deleteExpense(id) {
-  expenses = expenses.filter(e => e.id !== id);
-  saveData();
-  render();
-}
-
-function render() {
-  let list = document.getElementById("list");
+function sumClass(cls) {
   let total = 0;
-  let categoryData = {};
-
-  list.innerHTML = "";
-
-  expenses.forEach(e => {
-    total += e.amount;
-
-    if (!categoryData[e.category]) {
-      categoryData[e.category] = 0;
-    }
-    categoryData[e.category] += e.amount;
-
-    list.innerHTML += `
-      <div class="expense-item">
-        <div>
-          <strong>${e.name}</strong><br>
-          ₹${e.amount} - ${e.category}
-        </div>
-        <button class="delete-btn" onclick="deleteExpense(${e.id})">X</button>
-      </div>
-    `;
+  document.querySelectorAll("." + cls).forEach(el => {
+    total += Number(el.value) || 0;
   });
-
-  document.getElementById("total").innerText = total;
-
-  // Category Breakdown
-  let catBox = document.getElementById("categories");
-  catBox.innerHTML = "<h4>Category Breakdown:</h4>";
-
-  for (let cat in categoryData) {
-    catBox.innerHTML += `<div>${cat}: ₹${categoryData[cat]}</div>`;
-  }
+  return total;
 }
 
-render();
+function calculate() {
+  let salary = Number(document.getElementById("salaryVal").value);
+  let partner = Number(document.getElementById("partner").value);
+  let other = Number(document.getElementById("other").value);
+
+  let income = salary + partner + other;
+
+  let essential = sumClass("ess");
+  let non = sumClass("non");
+
+  let totalExpense = essential + non;
+  let savings = income - totalExpense;
+
+  document.getElementById("incomeTotal").innerText = income;
+  document.getElementById("essTotal").innerText = essential;
+  document.getElementById("nonTotal").innerText = non;
+
+  document.getElementById("resIncome").innerText = income;
+  document.getElementById("resExpense").innerText = totalExpense;
+  document.getElementById("resSavings").innerText = savings;
+
+  document.getElementById("resEmi").innerText =
+    document.querySelectorAll(".ess")[2].value || 0;
+}
 </script>
 
 </body>
